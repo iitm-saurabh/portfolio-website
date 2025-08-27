@@ -6,7 +6,7 @@ interface GateDashboardProps {
   title: string;
   countdown: string;
   subjects: {
-    name: string;
+    name:string;
     status: string;
   }[];
   motivational_quotes: string[];
@@ -14,8 +14,12 @@ interface GateDashboardProps {
 
 const GateDashboard = ({ title, countdown, subjects, motivational_quotes }: GateDashboardProps) => {
   const [timeLeft, setTimeLeft] = useState('');
+  const [quote, setQuote] = useState('');
 
   useEffect(() => {
+    // Set a random quote on the client side
+    setQuote(motivational_quotes[Math.floor(Math.random() * motivational_quotes.length)]);
+
     const timer = setInterval(() => {
       const difference = +new Date(countdown) - +new Date();
       let timeLeftString = '';
@@ -31,7 +35,7 @@ const GateDashboard = ({ title, countdown, subjects, motivational_quotes }: Gate
     }, 1000);
 
     return () => clearInterval(timer);
-  }, [countdown]);
+  }, [countdown, motivational_quotes]);
 
   return (
     <section id="gate" className="container py-24 sm:py-32">
@@ -46,7 +50,7 @@ const GateDashboard = ({ title, countdown, subjects, motivational_quotes }: Gate
         ))}
       </div>
       <div className="text-center italic text-muted-foreground">
-        <p>"{motivational_quotes[Math.floor(Math.random() * motivational_quotes.length)]}"</p>
+        {quote && <p>"{quote}"</p>}
       </div>
     </section>
   );
