@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useRef } from 'react';
 import Image from 'next/image';
 
 interface Project {
@@ -17,44 +17,57 @@ interface ProjectsSectionProps {
 }
 
 const ProjectsSection = ({ projects }: ProjectsSectionProps) => {
-  const [filter, setFilter] = useState('All');
+  const scrollContainer = useRef<HTMLDivElement>(null);
 
-  const filteredProjects = filter === 'All'
-    ? projects
-    : projects.filter(p => p.category === filter);
+  const scroll = (direction: 'left' | 'right') => {
+    if (scrollContainer.current) {
+      const scrollAmount = direction === 'left' ? -300 : 300;
+      scrollContainer.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+  };
 
-  const categories = ['All', ...Array.from(new Set(projects.map(p => p.category)))];
+  // Group projects by category
+  const projectsByCategory: { [key: string]: Project[] } = projects.reduce((acc, project) => {
+    const category = project.category || 'Uncategorized';
+    if (!acc[category]) {
+      acc[category] = [];
+    }
+    acc[category].push(project);
+    return acc;
+  }, {} as { [key: string]: Project[] });
+
 
   return (
-    <section id="projects" className="container py-24 sm:py-32">
-      <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">Projects</h2>
-      <div className="flex justify-center gap-4 mb-8">
-        {categories.map(category => (
-          <button
-            key={category}
-            onClick={() => setFilter(category)}
-            className={`px-4 py-2 rounded-md ${filter === category ? 'bg-primary text-primary-foreground' : 'bg-secondary'}`}
-          >
-            {category}
-          </button>
-        ))}
-      </div>
-      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {filteredProjects.map(project => (
-          <div key={project.id} className="bg-secondary rounded-lg overflow-hidden">
-            <Image src={project.image} alt={project.title} width={500} height={300} className="w-full h-48 object-cover" />
-            <div className="p-6">
-              <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-              <p className="text-muted-foreground mb-4">{project.description.substring(0, 100)}...</p>
-              <div className="flex flex-wrap gap-2">
-                {project.tech_stack.map(tech => (
-                  <span key={tech} className="bg-primary/20 text-primary px-2 py-1 rounded-md text-sm">{tech}</span>
-                ))}
-              </div>
+    <section id="projects" className="py-24 sm:py-32 space-y-12">
+      {Object.entries(projectsByCategory).map(([category, projects]) => (
+        <div key={category}>
+          <h3 className="text-2xl font-bold mb-4 container">{category}</h3>
+          <div className="relative group/carousel">
+            <div ref={scrollContainer} className="flex overflow-x-auto space-x-4 pb-4 scrollbar-hide pl-4 md:pl-8 lg:pl-16">
+              {projects.map(project => (
+                <div key={project.id} className="group/card min-w-[300px] bg-secondary rounded-lg overflow-hidden transition-all duration-300 ease-in-out hover:scale-110 hover:z-10 hover:relative">
+                  <div className="relative">
+                    <Image src={project.image} alt={project.title} width={300} height={170} className="w-full h-40 object-cover" />
+                  </div>
+                  <div className="p-4">
+                    <h4 className="text-lg font-bold">{project.title}</h4>
+                    <div className="opacity-0 group-hover/card:opacity-100 transition-opacity duration-300 pt-2">
+                      <p className="text-sm text-muted-foreground">{project.description.substring(0, 80)}...</p>
+                      <div className="flex flex-wrap gap-2 mt-2">
+                        {project.tech_stack.map(tech => (
+                          <span key={tech} className="bg-primary/20 text-primary px-2 py-1 rounded-md text-xs">{tech}</span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
+            <button onClick={() => scroll('left')} className="absolute top-1/2 left-0 transform -translate-y-1/2 bg-black/50 p-2 rounded-full text-white z-20 opacity-0 group-hover/carousel:opacity-100 transition-opacity">‹</button>
+            <button onClick={() => scroll('right')} className="absolute top-1/2 right-0 transform -translate-y-1/2 bg-black/50 p-2 rounded-full text-white z-20 opacity-0 group-hover/carousel:opacity-100 transition-opacity">›</button>
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
     </section>
   );
 };
