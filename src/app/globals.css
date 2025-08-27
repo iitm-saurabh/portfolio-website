@@ -4,13 +4,47 @@
 
 @layer base {
   :root {
-    --background: 0 0% 8%; /* #141414 */
-    --foreground: 0 0% 98%; /* #FAFAFA */
+    /* Light Theme Variables */
+    --background: 0 0% 100%; /* white */
+    --foreground: 222.2 84% 4.9%; /* black */
 
-    --card: 0 0% 8%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 356 78% 55%; /* #E50914 */
+    --primary-foreground: 0 0% 98%;
+
+    --secondary: 0 0% 95%; /* light grey */
+    --secondary-foreground: 222.2 84% 4.9%;
+
+    --muted: 0 0% 64%; /* #B3B3B3 */
+    --muted-foreground: 0 0% 45%; /* #808080 */
+
+    --accent: 356 78% 55%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    /* Dark Theme Variables */
+    --background: 222.2 84% 4.9%; /* almost black */
+    --foreground: 0 0% 98%; /* white */
+
+    --card: 222.2 84% 4.9%;
     --card-foreground: 0 0% 98%;
 
-    --popover: 0 0% 8%;
+    --popover: 222.2 84% 4.9%;
     --popover-foreground: 0 0% 98%;
 
     --primary: 356 78% 55%; /* #E50914 */
@@ -25,18 +59,12 @@
     --accent: 356 78% 55%;
     --accent-foreground: 0 0% 98%;
 
-    --destructive: 0 84% 60%;
+    --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 0 0% 13%;
-    --input: 0 0% 13%;
-    --ring: 356 78% 55%;
-
-    --radius: 0.5rem;
-  }
-
-  .dark {
-    /* Dark theme is default, so no changes needed here */
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
   }
 }
 
@@ -46,6 +74,5 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: sans-serif;
   }
 }
