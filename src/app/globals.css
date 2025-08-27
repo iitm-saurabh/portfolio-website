@@ -68,8 +68,4 @@
   }
 }
 
-@layer base {
-  body {
-    @apply bg-background text-foreground;
-  }
-}
+/* Base styles are applied in layout.tsx */
