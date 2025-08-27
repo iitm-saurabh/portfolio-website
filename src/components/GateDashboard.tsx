@@ -49,7 +49,7 @@ const GateDashboard = ({ title, countdown, subjects, motivational_quotes }: Gate
         ))}
       </div>
       <div className="text-center italic text-muted-foreground">
-        {quote && <p>"{quote}"</p>}
+        {quote && <p>&quot;{quote}&quot;</p>}
       </div>
     </section>
   );
