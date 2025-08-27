@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "title": "Microcontroller Project",
+    "category": "Embedded Systems",
+    "image": "https://via.placeholder.com/500x300/222222/FFFFFF?text=Project+1",
+    "video": "/project1.mp4",
+    "description": "A detailed description of the microcontroller project, including its features, challenges, and outcomes.",
+    "tech_stack": ["Arduino", "C++", "PlatformIO"],
+    "github_link": "#",
+    "live_demo_link": null,
+    "report_link": "#"
+  },
+  {
+    "id": 2,
+    "title": "Signal Processing Simulation",
+    "category": "Signal Processing",
+    "image": "https://via.placeholder.com/500x300/222222/FFFFFF?text=Project+2",
+    "video": "/project2.mp4",
+    "description": "A simulation of a complex signal processing algorithm using MATLAB, with visualizations and performance analysis.",
+    "tech_stack": ["MATLAB", "Simulink"],
+    "github_link": "#",
+    "live_demo_link": null,
+    "report_link": "#"
+  },
+  {
+    "id": 3,
+    "title": "IoT Weather Station",
+    "category": "IoT",
+    "image": "https://via.placeholder.com/500x300/222222/FFFFFF?text=Project+3",
+    "video": null,
+    "description": "An IoT-based weather station that collects and displays real-time environmental data using an ESP32 microcontroller.",
+    "tech_stack": ["ESP32", "C++", "MQTT", "Node-RED"],
+    "github_link": "#",
+    "live_demo_link": "#",
+    "report_link": null
+  }
+]

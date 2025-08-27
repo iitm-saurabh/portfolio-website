@@ -1,0 +1,15 @@
+{
+  "bio": "A passionate and driven Electronics and Telecommunications Engineering student with a strong foundation in electronic systems and a keen interest in software innovation. Currently pursuing a dual degree from SPPU and IIT Madras, with a goal to excel in the GATE 2026 examination and contribute to the tech industry.",
+  "education": [
+    {
+      "degree": "BE in Electronics & Telecommunications",
+      "university": "Savitribai Phule Pune University (SPPU)",
+      "logo": "https://via.placeholder.com/64/E50914/FFFFFF?text=SPPU"
+    },
+    {
+      "degree": "BS in Electronic Systems",
+      "university": "Indian Institute of Technology, Madras (IIT Madras)",
+      "logo": "https://via.placeholder.com/64/E50914/FFFFFF?text=IITM"
+    }
+  ]
+}
